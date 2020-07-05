@@ -1,3 +1,10 @@
+# Images and documents
+*.pdf
+*.png
+
+# emacs backups
+*~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
