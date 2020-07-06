@@ -3,6 +3,7 @@ Script for extracting PDF images to an album.
 """
 
 import argparse, glob, os, sys
+from pdfreader import PDFDocument
 
 
 def main():
@@ -14,16 +15,19 @@ def main():
                         help="increase output verbosity")
     parser.add_argument("-fp", "--first_page", default=0,
                         help="first page to extract from")
-    parser.add_argument("-lp", "--last_page", default=12,
+    parser.add_argument("-lp", "--last_page", default=1000,
                         help="last page to extract from")
     parser.add_argument("-mw", "--min_width", default=200)
     parser.add_argument("-mh", "--min_height", default=200)
-    parser.add_argument("-xw", "--max_width", default=1260)
-    parser.add_argument("-xh", "--max_height", default=1635)
+    parser.add_argument("-xw", "--max_width", default=1210)
+    parser.add_argument("-xh", "--max_height", default=1570)
     parser.add_argument("-mt", "--make_transparent", default=True)
     parser.add_argument("-wt", "--white_to_trans", default=True)
     parser.add_argument("-bt", "--black_to_trans", default=True)
     args = parser.parse_args()
+
+    if args.verbose:
+        print(f"Args:\n\t{args}")
 
     # Obtain the base filename
     file_name = args.file_name
@@ -45,7 +49,6 @@ def main():
     os.makedirs(output, exist_ok=True)
 
     # Import the pdfreader
-    from pdfreader import PDFDocument
     fd = open(file_name, "rb")
     doc = PDFDocument(fd)
 
@@ -77,8 +80,8 @@ def main():
                         )
                     continue
                 width, height = pil_image.size
-                if width < 1260 and height < 1635:
-                    if width > 200 and height > 200:
+                if width < args.max_width and height < args.max_height:
+                    if width > args.min_width and height > args.min_height:
                         if args.verbose:
                             print(
                                 f"Saving image {key} on page{i}: "+\
@@ -87,6 +90,7 @@ def main():
                         pil_image.save(f"{output}/page{i}_{key}.png")
                         if args.make_transparent:
                             _do_transparent(args, i, key, pil_image, output)
+    return
 
 def _do_transparent(args, i, key, im, output):
     if not args.white_to_trans and not args.black_to_trans:
@@ -115,13 +119,13 @@ def _do_transparent(args, i, key, im, output):
 
     # Make the command and execute
     if args.white_to_trans:
-        cmd = f"convert {inpath} -transparent white {outpath}"
+        cmd = f"convert {inpath} -fuzz 1% -transparent white {outpath}"
         res = os.system(cmd)
         check_result(res)
         if args.black_to_trans:
             inpath = outpath
     if args.black_to_trans:
-        cmd = f"convert {inpath} -transparent black {outpath}"
+        cmd = f"convert {inpath} -fuzz 1% -transparent black {outpath}"
         res = os.system(cmd)
         check_result(res)
     return 0
