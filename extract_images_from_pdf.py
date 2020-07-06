@@ -10,12 +10,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("file_name")
     parser.add_argument("-o", "--output", default=None)
-    parser.add_argument("-v", "--verbose", default=False,
+    parser.add_argument("-v", "--verbose", default=True,
                         help="increase output verbosity")
     parser.add_argument("-fp", "--first_page", default=0,
                         help="first page to extract from")
-    parser.add_argument("-lp", "--last_page", default=10000,
-                        help="last page to extract from"))
+    parser.add_argument("-lp", "--last_page", default=10,
+                        help="last page to extract from")
     parser.add_argument("-mw", "--min_width", default=200)
     parser.add_argument("-mh", "--min_height", default=200)
     parser.add_argument("-xw", "--max_width", default=1260)
@@ -36,7 +36,7 @@ def main():
     assert len(base_file_name) > 0
 
     # Make the output directory
-    if args.output is not None
+    if args.output is not None:
         output = args.output
     else:
         output = base_file_name + "_images"
@@ -81,8 +81,8 @@ def main():
                     if width > 200 and height > 200:
                         if args.verbose:
                             print(
-                                "Saving image {key} on page{i}: "+\
-                                "(w,h)={pil_image.size}"
+                                f"Saving image {key} on page{i}: "+\
+                                f"(w,h)={pil_image.size}"
                             )
                         pil_image.save(f"{output}/page{i}_{key}.png")
                         if args.make_transparent:
@@ -108,30 +108,23 @@ def _do_transparent(args, i, key, im, output):
         color = "black"
     outpath = outpath.format(output=output, i=i, key=key, s=s)
 
-    # 
-
-    # Remove both black and white backgrounds
-    if args.white_to_trans and args.black_to_trans:
-        command = cmd.format(
-            inpath = inpath,
-            output = output,
-            i = i,
-            key = key,
-            color = "white",
-            s = "nowhite_noblack",
-        )
-        res = os.system(cmd)
-        command = cmd.format(
-            inpath = inpath,
-            output = output,
-            i = i,
-            key = key,
-            color = "black",
-            s = "nowhite_noblack",
-        )
+    def check_result(res):
         if res != 0:
             raise Exception("'convert' from ImageMagick not recognized")
-    elif
+        pass
+
+    # Make the command and execute
+    if args.white_to_trans:
+        cmd = f"convert {inpath} -transparent white {outpath}"
+        res = os.system(cmd)
+        check_result(res)
+        if args.black_to_trans:
+            inpath = outpath
+    if args.black_to_trans:
+        cmd = f"convert {inpath} -transparent black {outpath}"
+        res = os.system(cmd)
+        check_result(res)
+    return 0
 
 
 if __name__ == "__main__":
