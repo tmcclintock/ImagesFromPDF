@@ -14,13 +14,13 @@ def main():
                         help="increase output verbosity")
     parser.add_argument("-fp", "--first_page", default=0,
                         help="first page to extract from")
-    parser.add_argument("-lp", "--last_page", default=10,
+    parser.add_argument("-lp", "--last_page", default=12,
                         help="last page to extract from")
     parser.add_argument("-mw", "--min_width", default=200)
     parser.add_argument("-mh", "--min_height", default=200)
     parser.add_argument("-xw", "--max_width", default=1260)
     parser.add_argument("-xh", "--max_height", default=1635)
-    parser.add_argument("-mt", "--make_transparent", default=False)
+    parser.add_argument("-mt", "--make_transparent", default=True)
     parser.add_argument("-wt", "--white_to_trans", default=True)
     parser.add_argument("-bt", "--black_to_trans", default=True)
     args = parser.parse_args()
@@ -41,7 +41,7 @@ def main():
     else:
         output = base_file_name + "_images"
         if args.verbose:
-            print(f"No output file given; outputing to {output}")
+            print(f"No output file given; outputing to {output}/")
     os.makedirs(output, exist_ok=True)
 
     # Import the pdfreader
