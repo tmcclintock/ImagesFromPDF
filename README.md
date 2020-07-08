@@ -56,3 +56,11 @@ I have a PDF of the [Pathfinder Bestiary](https://paizo.com/products/btpy8auu?Pa
 $ python extract_images_from_pdf.py Bestiary1.pdf -mt=True
 ```
 These images can then be inserted into virtual tabletop software.
+
+## Tests
+
+This sript has been tested on Python 3.7 on a Mac.
+
+## Contributing
+
+PRs are welcome. Big upgrades could include giving sensible names to images based on nearby text in the documents, as well as a test suite that I was too lazy to make.
