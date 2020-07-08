@@ -40,8 +40,8 @@ to enable different features. These include:
 * `-lp` or `--last_page`; default 1000, last page to export from.
 * `-mw` or `--min_width`; default 200, minimum pixel width of pictures to export.
 * `-mh` or `--min_height`; default 200, minimum pixel height of pictures to export.
-* `-xw` or `--max_width`; default 200, maximum pixel width of pictures to export.
-* `-xh` or `--max_height`; default 200, maximum pixel height of pictures to export.
+* `-xw` or `--max_width`; default 1210, maximum pixel width of pictures to export.
+* `-xh` or `--max_height`; default 1517, maximum pixel height of pictures to export.
 * `-mt` or `--make_transparent`; default `False`, flag to attempt to make backgrounds transparent.
 * `-wt` or `--white_to_trans`; default `True`, if `-mt=True` then set this flag to make white pixels transparent
 * `-bt` or `--black_to_trans`; default `True`, if `-mt=True` then set this flag to make black pixels transparent.
