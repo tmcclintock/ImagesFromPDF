@@ -17,23 +17,24 @@ you must be using Python 3.X to use `pdfreader`.
 
 The other requirement is [`ImageMagick`](https://imagemagick.org/index.php),
 which is a command-line program for editing images. It is used in
-this script to remove white and/or black backgrounds from images.
+this script to remove white and/or black backgrounds from images, but
+is not required to simply extract images.
 `ImageMagick` must be installed following the instructions in their
 documentation. You can use `brew` if you have a Mac, but the
-instructions are slightly more complicated for Windows or Unix users.
+steps are slightly more complicated for Windows or Unix users.
 
 ## Usage
 
 The script in thie repository is `extract_images_from_pdf.py` and it
 can be ran from the command line with
 ```bash
-$ python extract_images_from_pdf.py MyFile.pdf
+$ python extract_images_from_pdf.py /path/to/MyFile.pdf
 ```
 
 You can run this script with a number of flags that you can set
 to enable different features. These include:
 
-* `-o` or `--output`; controls the output directory, by default it will output to `<filename>_images/` where the input file is called `<filename>.pdf`.
+* `-o` or `--output`; controls the output directory, by default it will output to `<filename>_images/` where the input file is called `/path/to/<filename>.pdf`.
 * `-v` or `--verbose`; set to `True` by default, controls the amount of output provided.
 * `-fp` or `--first_page`; default 0, first page to export from.
 * `-lp` or `--last_page`; default 1000, last page to export from.
@@ -42,10 +43,10 @@ to enable different features. These include:
 * `-xw` or `--max_width`; default 200, maximum pixel width of pictures to export.
 * `-xh` or `--max_height`; default 200, maximum pixel height of pictures to export.
 * `-mt` or `--make_transparent`; default `False`, flag to attempt to make backgrounds transparent.
-* `-wt` or `--white_to_trans`; default `True`, if `-mt=True` then flag to make white pixels transparent
-* `-bt` or `--black_to_trans`; default `True`, if `-mt=True` then flag to make black pixels transparent.
-* `-wf` or `--white_fuzz`; default 1, if white pixels are made transparent, sets the `ImageMagick` fuzz percentage (i.e. sets _almost_ white pixels to transparent as well).
-* `-bf` or `--black_fuzz`; default 1, if black pixels are made transparent, sets the `ImageMagick` fuzz percentage (i.e. sets _almost_ black pixels to transparent as well).
+* `-wt` or `--white_to_trans`; default `True`, if `-mt=True` then set this flag to make white pixels transparent
+* `-bt` or `--black_to_trans`; default `True`, if `-mt=True` then set this flag to make black pixels transparent.
+* `-wf` or `--white_fuzz`; default 1, if white pixels are made transparent, sets the `ImageMagick` fuzz percentage (i.e. sets _almost_ white pixels to transparent as well). Can be 0-100.
+* `-bf` or `--black_fuzz`; default 1, if black pixels are made transparent, sets the `ImageMagick` fuzz percentage (i.e. sets _almost_ black pixels to transparent as well). Can be 0-100.
 * `-ims` or `--image_string`; default is `"Im"`, string that appears in all image names used to indicate which images to pull from the document.
 
 ## Example usage
