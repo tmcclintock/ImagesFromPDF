@@ -40,6 +40,14 @@ Example Usage. Upon completion,
 
 See Usage for descriptions of each flag option.
 
+
+```
+docker run --rm \
+    -v $(pwd):/output \
+    --entrypoint bash \
+    extract_images_from_pdf:latest
+```
+
 ```
 docker run --rm \
     -v $(pwd):/output \
