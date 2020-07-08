@@ -53,7 +53,7 @@ Note that the max pixel height and width values correspond to just under the siz
 
 ## Example usage
 
-I have a PDF of the [Pathfinder Bestiary](https://paizo.com/products/btpy8auu?Pathfinder-Roleplaying-Game-Bestiary) released by Paizo. I was able to use this script to pull out all monster images into `png` with transparent backgrounds using:
+I have a PDF of the [Pathfinder Bestiary](https://paizo.com/products/btpy8auu?Pathfinder-Roleplaying-Game-Bestiary) released by Paizo. I was able to use this script to pull out all monster images into `png` files with transparent backgrounds using:
 ```bash
 $ python extract_images_from_pdf.py Bestiary1.pdf -mt=True
 ```
