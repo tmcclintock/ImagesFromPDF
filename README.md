@@ -49,6 +49,8 @@ to enable different features. These include:
 * `-bf` or `--black_fuzz`; default 1, if black pixels are made transparent, sets the `ImageMagick` fuzz percentage (i.e. sets _almost_ black pixels to transparent as well). Can be 0-100.
 * `-ims` or `--image_string`; default is `"Im"`, string that appears in all image names used to indicate which images to pull from the document.
 
+Note that the max pixel height and width values correspond to just under the size of pages in standard [Pathfinder bestiaries](https://paizo.com/products/btpy8auu?Pathfinder-Roleplaying-Game-Bestiary).
+
 ## Example usage
 
 I have a PDF of the [Pathfinder Bestiary](https://paizo.com/products/btpy8auu?Pathfinder-Roleplaying-Game-Bestiary) released by Paizo. I was able to use this script to pull out all monster images into `png` with transparent backgrounds using:
