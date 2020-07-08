@@ -4,6 +4,7 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir output
+COPY input input
 
 COPY extract_images_from_pdf.py extract_images_from_pdf.py
 
