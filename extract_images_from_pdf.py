@@ -118,7 +118,6 @@ def main():
                         pil_image.save(f"{output}/page{i}_{key}.png")
                         if args.make_transparent:
                             _do_transparent(args, i, key, pil_image, output)
-                            print("did this")
     return
 
 def _do_transparent(args, i, key, im, output):
@@ -165,7 +164,6 @@ def _do_transparent(args, i, key, im, output):
             f"black {outpath}"
         res = os.system(cmd)
         check_result(res)
-        print("here  ",outpath)
     return 0
 
 
