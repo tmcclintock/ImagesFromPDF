@@ -39,12 +39,6 @@ Example Usage. Upon completion, the container will be removed.
 ```
 docker run --rm \
     -v $(pwd):/output \
-    extract_images_from_pdf:latest bash
-```
-
-```
-docker run --rm \
-    -v $(pwd):/output \
     extract_images_from_pdf:latest \
     /path/to/MyFile.pdf --verbose --min-width 200
 ```
