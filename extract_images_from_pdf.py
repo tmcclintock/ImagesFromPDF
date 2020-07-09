@@ -74,7 +74,7 @@ def main(file_name: 'the pdf to extract from',
          ):
 
     # Obtain the base filename
-    assert os.path.exists(file_name)
+    assert os.path.exists(file_name), f"{file_name} not found"
     assert file_name[-4:] == ".pdf", "must provide '.pdf' file"
     base_file_name = file_name[:-4]
     # Split on slashes
