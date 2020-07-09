@@ -34,8 +34,8 @@ docker build -t extract_images_from_pdf .
 ```
 ### Docker Run
 
-Example Usage. Upon completion, 
-* Move the pdf into the input directory
+Example Usage.
+* Move the pdf into the PWD
 * Upon completion, the container will be removed, and the output will be in a directory in the pwd
 
 See Usage for descriptions of each flag option.
@@ -50,9 +50,9 @@ docker run --rm \
 
 ```
 docker run --rm \
-    -v $(pwd):/output \
+    -v "$PWD:$PWD" -w $PWD \
     extract_images_from_pdf:latest \
-    ./input/MyFile.pdf --verbose --min-width 200
+    Bestiary1.pdf --verbose
 ```
 
 ## Usage
