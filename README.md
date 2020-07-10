@@ -23,6 +23,38 @@ is not required to simply extract images.
 documentation. You can use `brew` if you have a Mac, but the
 steps are slightly more complicated for Windows or Unix users.
 
+## Running with Docker
+
+### Requirements
+The only requirement is Docker.
+
+### Build Docker Image
+```
+docker build -t extract_images_from_pdf .
+```
+### Docker Run
+
+Example Usage.
+* Move the pdf into the PWD
+* Upon completion, the container will be removed, and the output will be in a directory in the pwd
+
+See Usage for descriptions of each flag option.
+
+
+```
+docker run --rm \
+    -v $(pwd):/output \
+    --entrypoint bash \
+    extract_images_from_pdf:latest
+```
+
+```
+docker run --rm \
+    -v "$PWD:$PWD" -w $PWD \
+    extract_images_from_pdf:latest \
+    Bestiary1.pdf --verbose
+```
+
 ## Usage
 
 The script in thie repository is `extract_images_from_pdf.py` and it
