@@ -51,7 +51,6 @@ def _do_transparent(white_to_trans, black_to_trans, white_fuzz, black_fuzz, i, k
             f"black {outpath}"
         res = os.system(cmd)
         check_result(res)
-        print("here  ",outpath)
     return 0
 
 
@@ -131,5 +130,3 @@ def main(file_name: 'the pdf to extract from',
                         pil_image.save(f"{output}/page{i}_{key}.png")
                         if make_transparent:
                             _do_transparent(white_to_trans, black_to_trans, white_fuzz, black_fuzz, i, key, pil_image, output)
-                            print("did this")
-    return
